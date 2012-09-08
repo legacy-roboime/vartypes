@@ -37,7 +37,7 @@ namespace VarTypes {
   class VarDouble;
   typedef shared_ptr<VarDouble> VarDoublePtr;
   
-  class VarDouble : public VarTypeTemplate<VarDoubleVal> 
+  class VARTYPES_EXPORT VarDouble : public VarTypeTemplate<VarDoubleVal> 
   {
     Q_OBJECT
   protected:

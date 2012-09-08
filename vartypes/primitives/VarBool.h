@@ -37,7 +37,7 @@ namespace VarTypes {
   class VarBool;
   typedef shared_ptr<VarBool> VarBoolPtr;
   
-  class VarBool : public VarTypeTemplate<VarBoolVal>
+  class VARTYPES_EXPORT VarBool : public VarTypeTemplate<VarBoolVal>
   {
     Q_OBJECT
   protected:

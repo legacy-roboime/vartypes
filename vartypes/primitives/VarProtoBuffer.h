@@ -34,7 +34,7 @@ namespace VarTypes {
   */ 
   
   template <class CLASS_VARVAL_TYPE, VarTypeId TPL_vartype_id>   
-  class VarProtoBuffer : public VarTypeTemplate<VarProtoBufferVal<CLASS_VARVAL_TYPE, TPL_vartype_id> > 
+  class VARTYPES_EXPORT VarProtoBuffer : public VarTypeTemplate<VarProtoBufferVal<CLASS_VARVAL_TYPE, TPL_vartype_id> > 
   {
 
   public:

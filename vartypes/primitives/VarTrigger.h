@@ -41,7 +41,7 @@ namespace VarTypes {
   class VarTrigger;
   typedef shared_ptr<VarTrigger> VarTriggerPtr;
   
-  class VarTrigger : public VarType
+  class VARTYPES_EXPORT VarTrigger : public VarType
   {
     Q_OBJECT
   protected:

@@ -41,7 +41,7 @@ namespace VarTypes {
   
     If you don't know what VarTypes are, please see \c VarTypes.h 
   */
-  class VarTreeView : public QWidget
+  class VARTYPES_EXPORT VarTreeView : public QWidget
   {
     Q_OBJECT
   protected:

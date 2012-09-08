@@ -40,7 +40,7 @@ namespace VarTypes {
   class VarSelection;
   typedef shared_ptr<VarSelection> VarSelectionPtr;
 
-  class VarSelection : public VarType
+  class VARTYPES_EXPORT VarSelection : public VarType
   {
     Q_OBJECT
   protected:

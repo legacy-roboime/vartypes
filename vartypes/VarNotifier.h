@@ -31,7 +31,7 @@ namespace VarTypes {
     @author Stefan Zickler
     @brief  A helper class which accumulates the occurence of VarType changes
   */
-  class VarNotifier : public QObject {
+  class VARTYPES_EXPORT VarNotifier : public QObject {
   Q_OBJECT
   public:
     enum VarNotificationType {

@@ -38,7 +38,7 @@ namespace VarTypes {
   
     If you don't know what VarTypes are, please see \c VarTypes.h 
   */
-  class VarTreeModel : public QStandardItemModel
+  class VARTYPES_EXPORT VarTreeModel : public QStandardItemModel
   {
     Q_OBJECT
   

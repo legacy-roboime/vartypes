@@ -35,7 +35,7 @@ namespace VarTypes {
   
     If you don't know what VarTypes are, please see \c VarTypes.h 
   */
-  class VarXML
+  class VARTYPES_EXPORT VarXML
   {
   public:
     VarXML();

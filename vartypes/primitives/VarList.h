@@ -39,7 +39,7 @@ namespace VarTypes {
   class VarList;
   typedef shared_ptr<VarList> VarListPtr;
   
-  class VarList : public VarType
+  class VARTYPES_EXPORT VarList : public VarType
   {
     Q_OBJECT
   protected:

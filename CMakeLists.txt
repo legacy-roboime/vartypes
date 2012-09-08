@@ -82,6 +82,7 @@ set (HEADERS
 
 set (INSTALLABLE_HEADERS
   ${HEADERS}
+  ${src_dir}/vartypes/DllDefines.h
   ${src_dir}/vartypes/VarTypes.h
   ${src_dir}/vartypes/VarTypesFactory.h
   ${src_dir}/vartypes/gui/VarTreeViewOptions.h
@@ -121,15 +122,18 @@ qt4_add_resources(RC_SRCS
   ${RC}
 )
 
-#flags to set in debug mode
-set (CMAKE_CXX_FLAGS_DEBUG "-g")
+if(NOT MSVC)
+  #flags to set in debug mode
+  set (CMAKE_CXX_FLAGS_DEBUG "-g")
 
-#flags to set in release mode
-set (CMAKE_CXX_FLAGS_RELEASE "-DNDEBUG -O3 -march=native")
+  #flags to set in release mode
+  set (CMAKE_CXX_FLAGS_RELEASE "-DNDEBUG -O3 -march=native")
+endif()
 
 set (libs ${QT_LIBRARIES})
 
 
+set(CMAKE_DEBUG_POSTFIX d)
 SET(CMAKE_INSTALL_LIBDIR lib CACHE PATH "Output directory for libraries")
 SET(CMAKE_INSTALL_INCLUDEDIR include CACHE PATH "Output directory for header files")
 SET(CMAKE_INSTALL_DOCDIR share/doc CACHE PATH "Output directory for documentation and license files")
@@ -145,5 +149,7 @@ INSTALL(FILES ${INSTALLABLE_DOCFILES} DESTINATION ${CMAKE_INSTALL_DOCDIR}/vartyp
 
 INSTALL(TARGETS ${target}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  RUNTIME DESTINATION bin
 )
 

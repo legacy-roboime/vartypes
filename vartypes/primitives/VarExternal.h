@@ -44,7 +44,7 @@ namespace VarTypes {
   class VarExternal;
   typedef shared_ptr<VarExternal> VarExternalPtr;
   
-  class VarExternal : public VarList
+  class VARTYPES_EXPORT VarExternal : public VarList
   {
     Q_OBJECT
   protected:

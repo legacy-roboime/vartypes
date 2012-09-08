@@ -36,7 +36,7 @@ namespace VarTypes {
   class VarInt;
   typedef shared_ptr<VarInt> VarIntPtr;
   
-  class VarInt : public VarTypeTemplate<VarIntVal> 
+  class VARTYPES_EXPORT VarInt : public VarTypeTemplate<VarIntVal> 
   {
     Q_OBJECT
   protected:

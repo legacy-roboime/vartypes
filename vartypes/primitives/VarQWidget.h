@@ -52,7 +52,7 @@ namespace VarTypes {
   class VarQWidget;
   typedef shared_ptr<VarQWidget> VarQWidgetPtr;
   
-  class VarQWidget : public VarType
+  class VARTYPES_EXPORT VarQWidget : public VarType
   {
     Q_OBJECT
   protected:

@@ -42,7 +42,7 @@ namespace VarTypes {
   class VarStringEnum;
   typedef shared_ptr<VarStringEnum> VarStringEnumPtr;
   
-  class VarStringEnum : public VarType
+  class VARTYPES_EXPORT VarStringEnum : public VarType
   {
     Q_OBJECT
   protected:

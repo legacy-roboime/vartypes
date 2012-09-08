@@ -36,7 +36,7 @@ namespace VarTypes {
   class VarString;
   typedef shared_ptr<VarString> VarStringPtr;
   
-  class VarString : public VarTypeTemplate<VarStringVal> 
+  class VARTYPES_EXPORT VarString : public VarTypeTemplate<VarStringVal> 
   {
     Q_OBJECT
   protected:

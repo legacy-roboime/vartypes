@@ -21,6 +21,8 @@
 #include <limits.h>
 #include <float.h>
 
+#include "DllDefines.h"
+
 #ifdef WIN32
   typedef unsigned char uint8_t;
 #endif
@@ -55,7 +57,7 @@ namespace VarTypes {
   */
   
   
-  class VarVal {
+  class VARTYPES_EXPORT VarVal {
   
       protected:
       inline virtual void lock() const {};

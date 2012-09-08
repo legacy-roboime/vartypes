@@ -31,8 +31,10 @@
 #include <QStyleOptionViewItem>
 #include <QModelIndex>
 #include <QLineEdit>
-#include "VarVal.h"
 #include <QObject>
+
+#include "DllDefines.h"
+#include "VarVal.h"
   
   #ifndef VDATA_NO_XML
     #include "xmlParser.h"
@@ -43,9 +45,15 @@
   #endif
 
 //Would use QSharedPointer instead of the tr1/boost versions, but enable_shared_from_this is not yet implemented in Qt which is a functionality that we need as we have vartypes generating events with pointers to themselves.
+#ifdef _WIN32
+#include <memory>
+using std::shared_ptr;
+using std::enable_shared_from_this;
+#else
 #include <tr1/memory>
 using std::tr1::shared_ptr;
 using std::tr1::enable_shared_from_this;
+#endif
 
 
 namespace VarTypes {
@@ -108,7 +116,7 @@ namespace VarTypes {
 //   };
   
   //if using QT, inherit QObject as a base
-  class VarType : public QObject, public virtual VarVal, public virtual enable_shared_from_this<VarType>
+  class VARTYPES_EXPORT VarType : public QObject, public virtual VarVal, public virtual enable_shared_from_this<VarType>
   {
   
 
@@ -257,7 +265,7 @@ namespace VarTypes {
   };
   
   template <class CLASS_VARVAL_TYPE>
-  class VarTypeTemplate : public VarType, virtual public CLASS_VARVAL_TYPE {
+  class VARTYPES_EXPORT VarTypeTemplate : public VarType, virtual public CLASS_VARVAL_TYPE {
     public:
     VarTypeTemplate(string name="") : VarType(name) {
     };

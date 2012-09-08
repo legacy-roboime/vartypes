@@ -47,7 +47,7 @@ namespace VarTypes {
   class VarBlob;
   typedef shared_ptr<VarBlob> VarBlobPtr;
   
-  class VarBlob : public VarType
+  class VARTYPES_EXPORT VarBlob : public VarType
   {
     Q_OBJECT
   protected:
