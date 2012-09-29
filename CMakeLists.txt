@@ -1,10 +1,9 @@
 project(vartypes)
 cmake_minimum_required(VERSION 2.4)
 
-find_package ( Qt4 REQUIRED )
+find_package(Qt4 REQUIRED)
 
-include ( ${QT_USE_FILE} )
-
+include(${QT_USE_FILE})
 
 include_directories(${src_dir}/vartypes)
 include_directories(${src_dir}/vartypes/primitives)
@@ -14,7 +13,7 @@ include_directories(${src_dir}/vartypes/xml)
 
 set(src_dir .)
 
-set (SRCS
+set(SRCS
   ${src_dir}/vartypes/VarBase64.cpp
   ${src_dir}/vartypes/VarNotifier.cpp
   ${src_dir}/vartypes/VarTypes.cpp
@@ -143,13 +142,35 @@ add_library(${target} SHARED ${MOC_SRCS} ${SRCS} ${RC_SRCS})
 set_target_properties(${target} PROPERTIES VERSION 0.7.0 SOVERSION 1)
 target_link_libraries(${target} ${libs})
 
-INSTALL(FILES ${INSTALLABLE_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/vartypes)
+install(FILES ${INSTALLABLE_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/vartypes)
 
-INSTALL(FILES ${INSTALLABLE_DOCFILES} DESTINATION ${CMAKE_INSTALL_DOCDIR}/vartypes)
+install(FILES ${INSTALLABLE_DOCFILES} DESTINATION ${CMAKE_INSTALL_DOCDIR}/vartypes)
 
-INSTALL(TARGETS ${target}
+install(TARGETS ${target}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
   RUNTIME DESTINATION bin
 )
+
+# Generate packages
+set(CPACK_PACKAGE_CONTACT "Jan Segre <jan@segre.in>")
+set(CPACK_PACKAGE_NAME "vartypes")
+# Note that we're not the author of the package
+# but merley packagers who may do some patches
+set(CPACK_PACKAGE_VENDOR "RoboIME")
+string(TOLOWER ${CPACK_PACKAGE_VENDOR} FLAVOR)
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/COPYING")
+set(CPACK_RESOURCE_FILE_README "${CMAKE_SOURCE_DIR}/README")
+set(CPACK_PACKAGE_VERSION "0.7.0")
+set(CPACK_OUTPUT_FILE_PREFIX ${PROJECT_SOURCE_DIR}/dist)
+# Debian specific
+#TODO: find out what components of qt are required, list them here:
+if(UNIX)
+  execute_process(COMMAND uname -i OUTPUT_VARIABLE ARCH)
+  string(STRIP ${ARCH} ARCH)
+endif()
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt4-core")
+set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}_${CPACK_PACKAGE_VERSION}-${FLAVOR}_${ARCH}")
+include(CPack)
+
 

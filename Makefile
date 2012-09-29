@@ -5,6 +5,11 @@ BUILDDIR=build
 BUILDTYPE=Release
 #BUILDTYPE=Debug
 
+PACKAGE=vartypes
+VERSION=0.7.0
+DEBARCH=$(shell dpkg --print-architecture)
+FLAVOR=roboime
+
 all: build
 
 mkbuilddir:
@@ -19,8 +24,8 @@ build: cmake
 package: cmake
 	$(MAKE) -C $(BUILDDIR) package
 
-deb:
-	cd $(BUILDDIR) && cpack -G DEB
+deb: cmake
+	cd $(BUILDDIR) && cpack -G DEB -D CPACK_PACKAGE_FILE_NAME="$(PACKAGE)_$(VERSION)-$(FLAVOR)_$(DEBARCH)"
 
 clean: mkbuilddir
 	$(MAKE) -C $(BUILDDIR) clean
