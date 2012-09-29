@@ -1,27 +1,33 @@
-buildDir=build
-#buildDir=build_debug
+BUILDDIR=build
+#BUILDDIR=build_debug
 
 #change to Debug for debug mode
-buildType=Release
-#buildType=Debug
+BUILDTYPE=Release
+#BUILDTYPE=Debug
 
 all: build
 
 mkbuilddir:
-	test -d $(buildDir) || mkdir -p $(buildDir)
+	[ -d $(BUILDDIR) ] || mkdir $(BUILDDIR)
 
 cmake: mkbuilddir CMakeLists.txt
-	cd $(buildDir) && cmake -DCMAKE_BUILD_TYPE=$(buildType) ..
+	cd $(BUILDDIR) && cmake -DCMAKE_BUILD_TYPE=$(BUILDTYPE) ..
 
 build: cmake
-	$(MAKE) -C $(buildDir)
+	$(MAKE) -C $(BUILDDIR)
+
+package: cmake
+	$(MAKE) -C $(BUILDDIR) package
+
+deb:
+	cd $(BUILDDIR) && cpack -G DEB
 
 clean: mkbuilddir
-	$(MAKE) -C $(buildDir) clean
+	$(MAKE) -C $(BUILDDIR) clean
 
 install: mkbuilddir
-	$(MAKE) -C $(buildDir) install
+	$(MAKE) -C $(BUILDDIR) install
 	
-cleanup_cache: mkbuilddir
-	cd $(buildDir) && rm -rf *
+clean-all:
+	cd $(BUILDDIR) && rm -rf *
 	
