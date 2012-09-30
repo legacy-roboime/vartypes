@@ -27,12 +27,12 @@ package: cmake
 deb: cmake
 	cd $(BUILDDIR) && cpack -G DEB -D CPACK_PACKAGE_FILE_NAME="$(PACKAGE)_$(VERSION)-$(FLAVOR)_$(DEBARCH)"
 
+install: cmake
+	$(MAKE) -C $(BUILDDIR) install
+
 clean: mkbuilddir
 	$(MAKE) -C $(BUILDDIR) clean
 
-install: mkbuilddir
-	$(MAKE) -C $(BUILDDIR) install
-	
 clean-all:
 	cd $(BUILDDIR) && rm -rf *
 	

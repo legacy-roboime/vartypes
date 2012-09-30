@@ -164,11 +164,11 @@ set(CPACK_RESOURCE_FILE_README "${CMAKE_SOURCE_DIR}/README")
 set(CPACK_PACKAGE_VERSION "0.7.0")
 set(CPACK_OUTPUT_FILE_PREFIX ${PROJECT_SOURCE_DIR}/dist)
 # Debian specific
-#TODO: find out what components of qt are required, list them here:
 if(UNIX)
   execute_process(COMMAND uname -i OUTPUT_VARIABLE ARCH)
   string(STRIP ${ARCH} ARCH)
 endif()
+#TODO: find out what components of qt are required, list them here:
 set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt4-core")
 set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}_${CPACK_PACKAGE_VERSION}-${FLAVOR}_${ARCH}")
 include(CPack)
