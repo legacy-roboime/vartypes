@@ -1,9 +1,12 @@
+cmake_minimum_required(VERSION 2.8.9)
+
 project(vartypes)
-cmake_minimum_required(VERSION 2.4)
 
-find_package(Qt4 REQUIRED)
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/modules)
+set(CMAKE_AUTOMOC ON)
 
-include(${QT_USE_FILE})
+find_package(Qt5 REQUIRED)
+find_package(Qt5Core REQUIRED)
 
 include_directories(${src_dir}/vartypes)
 include_directories(${src_dir}/vartypes/primitives)
@@ -113,11 +116,7 @@ set (RC
   ${src_dir}/vartypes/gui/icons/icons.qrc
 )
 
-qt4_wrap_cpp (MOC_SRCS
-  ${HEADERS}
-)
-
-qt4_add_resources(RC_SRCS 
+qt5_add_resources(RC_SRCS
   ${RC}
 )
 
@@ -139,9 +138,10 @@ SET(CMAKE_INSTALL_INCLUDEDIR include CACHE PATH "Output directory for header fil
 SET(CMAKE_INSTALL_DOCDIR share/doc CACHE PATH "Output directory for documentation and license files")
 
 set (target vartypes)
-add_library(${target} SHARED ${MOC_SRCS} ${SRCS} ${RC_SRCS})
-set_target_properties(${target} PROPERTIES VERSION 0.7.0 SOVERSION 1)
+add_library(${target} SHARED ${SRCS} ${RC_SRCS})
+set_target_properties(${target} PROPERTIES VERSION 0.8.0 SOVERSION 1)
 target_link_libraries(${target} ${libs})
+qt5_use_modules(${target} Core Widgets)
 
 install(FILES ${INSTALLABLE_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/vartypes)
 
@@ -156,6 +156,8 @@ install(TARGETS ${target}
 file(COPY README COPYING DESTINATION ${CMAKE_BINARY_DIR})
 file(RENAME ${CMAKE_BINARY_DIR}/README ${CMAKE_BINARY_DIR}/README.txt)
 file(RENAME ${CMAKE_BINARY_DIR}/COPYING ${CMAKE_BINARY_DIR}/COPYING.txt)
+
+set(CMAKE_OSX_ARCHITECTURES x86_64 i386)
 
 # Generate packages
 if(UNIX)
