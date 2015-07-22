@@ -15,6 +15,9 @@ HEADERS += ../vartypes/VarTypesFactory.h
 SOURCES += ../vartypes/VarTypesInstance.cpp
 HEADERS += ../vartypes/VarTypesInstance.h
 
+SOURCES += ../vartypes/VarTypesBase.cpp
+HEADERS += ../vartypes/VarTypesBase.h
+
 SOURCES += ../vartypes/VarXML.cpp
 HEADERS += ../vartypes/VarXML.h
 
@@ -122,6 +125,8 @@ INCLUDEPATH += ../vartypes
 INCLUDEPATH += ../vartypes/primitives
 INCLUDEPATH += ../vartypes/gui
 INCLUDEPATH += ../vartypes/xml
+
+DEFINES += DEBUG_ME
 
 win32 {
 	CONFIG+=windows
