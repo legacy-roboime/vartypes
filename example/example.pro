@@ -90,19 +90,24 @@ HEADERS += ../vartypes/gui/VarTreeViewOptions.h
 #FORMS += src/mainwindow.ui
 
 #build example executive
-TARGET = example
+TARGET = vartypes-example
 
-CONFIG += qt console
+#CONFIG += console
+CONFIG += qt
 
 #disable debugging for now...
 #(debugging only works if qt-debug symbols are available)
 CONFIG += debug
+QT += widgets
 
 #optional: enable OpenGL support
 #QT     += opengl
 
 #optional: enable networking
 #QT	   += network
+
+#optional: to use c++11
+CONFIG += c++11
 
 #ensure everything is placed in the 'src' folder:
 UI_HEADERS_DIR = src
@@ -125,4 +130,10 @@ unix {
 	DEFINES+=UNIX
 }
 
+release: DESTDIR = $$PWD/../../release
+release: MOC_DIR = $$PWD/../../release/mocs
+release: OBJECTS_DIR = $$PWD/../../release/objs
 
+debug: DESTDIR = $$PWD/../../debug
+debug: MOC_DIR = $$PWD/../../debug/mocs
+debug: OBJECTS_DIR = $$PWD/../../debug/objs

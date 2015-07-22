@@ -49,6 +49,10 @@
 #include <memory>
 using std::shared_ptr;
 using std::enable_shared_from_this;
+#elif __cplusplus >= 201103L
+#include <memory>
+using std::shared_ptr;
+using std::enable_shared_from_this;
 #else
 #include <tr1/memory>
 using std::tr1::shared_ptr;
