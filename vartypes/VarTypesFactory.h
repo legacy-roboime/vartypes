@@ -23,6 +23,7 @@
   #include "VarInt.h"
   #include "VarBool.h"
   #include "VarDouble.h"
+  #include "VarShort.h"
 
   #include "VarBlob.h"
   #include "VarList.h"

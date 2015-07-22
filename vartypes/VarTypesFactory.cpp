@@ -47,7 +47,9 @@ namespace VarTypes {
     if (t==VARTYPE_ID_BOOL) {
       return(VarPtr(new VarBool()));
     } else if (t==VARTYPE_ID_INT) {
-      return(VarPtr(new VarInt()));
+        return(VarPtr(new VarInt()));
+    } else if (t==VARTYPE_ID_SHORT) {
+      return(VarPtr(new VarShort()));
     } else if (t==VARTYPE_ID_DOUBLE) {
       return(VarPtr(new VarDouble()));
     } else if (t==VARTYPE_ID_STRING) {

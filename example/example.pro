@@ -57,6 +57,9 @@ HEADERS += ../vartypes/primitives/VarString.h
 SOURCES += ../vartypes/primitives/VarStringVal.cpp
 HEADERS += ../vartypes/primitives/VarStringVal.h
 
+HEADERS += ../vartypes/primitives/VarShort.h
+SOURCES += ../vartypes/primitives/VarShort.cpp
+
 SOURCES += ../vartypes/primitives/VarBlob.cpp
 HEADERS += ../vartypes/primitives/VarBlob.h
 
