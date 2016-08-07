@@ -27,7 +27,7 @@ namespace VarTypes {
     return new VarVal();
   }
   
-  VarVal * VarVal::deepClone() const {
+  VarVal * VarVal::deepClone() const {      
     return clone();
   }
   

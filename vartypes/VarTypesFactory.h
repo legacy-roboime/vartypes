@@ -55,6 +55,8 @@ namespace VarTypes {
     VarVal    * newVarVal(VarTypeId t);
     VarTypeId   stringToType(const string & s);
     string      typeToString(VarTypeId t);
+    VarPtr      cloneVarType(VarPtr v);
+    void        copyVarType(VarPtr src, VarPtr dst);
   
   };
 };

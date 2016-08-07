@@ -13,6 +13,7 @@
 //  If not, see <http://www.gnu.org/licenses/>.
 //========================================================================
 #include "VarTypesFactory.h"
+#include <assert.h>
 
 namespace VarTypes {
   VarTypesFactory::VarTypesFactory()
@@ -120,6 +121,8 @@ namespace VarTypes {
       return VARTYPE_ID_STRINGENUM;
     } else if (s=="selection") {
       return VARTYPE_ID_SELECTION;
+    } else if (s=="short") {
+      return VARTYPE_ID_SHORT;
     } else if (s=="trigger") {
       return VARTYPE_ID_TRIGGER;
     } else if (s=="qwidget") {
@@ -159,11 +162,13 @@ namespace VarTypes {
     } else if (vt==VARTYPE_ID_TIMELINE) {
       return "timeline";
     } else if (vt==VARTYPE_ID_LIST) {
-      return "list";
-    } else if (vt==VARTYPE_ID_STRINGENUM) {
-      return "stringenum";
+        return "list";
+      } else if (vt==VARTYPE_ID_STRINGENUM) {
+        return "stringenum";
     } else if (vt==VARTYPE_ID_SELECTION) {
       return "selection";
+    } else if (vt==VARTYPE_ID_SHORT) {
+      return "short";
     } else if (vt==VARTYPE_ID_TRIGGER) {
       return "trigger";
     } else if (vt==VARTYPE_ID_QWIDGET) {
@@ -176,5 +181,158 @@ namespace VarTypes {
       }
       return s;
     }
+  }
+
+  VarPtr VarTypesFactory::cloneVarType(VarPtr v)
+  {
+      switch (v->getType()) {
+      ////    VARTYPE_ID_UNDEFINED=0,
+      ////    VARTYPE_ID_BOOL,
+      ////    VARTYPE_ID_INT,
+      ////    VARTYPE_ID_DOUBLE,
+      ////    VARTYPE_ID_STRING,
+      ////    VARTYPE_ID_BLOB,
+      ////    VARTYPE_ID_EXTERNAL,
+      ////    VARTYPE_ID_VECTOR2D,
+      ////    VARTYPE_ID_VECTOR3D,
+      ////    VARTYPE_ID_TIMEVAR,
+      ////    VARTYPE_ID_TIMELINE,
+      ////    VARTYPE_ID_LIST,
+      ////    VARTYPE_ID_STRINGENUM,
+      ////    VARTYPE_ID_SELECTION,
+      ////    VARTYPE_ID_SHORT,
+      ////    VARTYPE_ID_TRIGGER,
+      ////    VARTYPE_ID_QWIDGET,
+      ////    VARTYPE_ID_COUNT,
+      ////    VARTYPE_ID_MIN_USERTYPE=128
+      case VARTYPE_ID_BOOL: {
+          VarBool* bb = (VarBool*)(v.get());
+          VarBool* _bool = new VarBool(bb->getName(), bb->getBool());
+          return VarBoolPtr(_bool);
+      }
+
+      case VARTYPE_ID_INT: {
+          VarInt* ii = (VarInt*)(v.get());
+          VarInt* _int = new VarInt(ii->getName(), ii->getInt(), ii->getMin(), ii->getMax());
+          return VarIntPtr(_int);
+      }
+
+      case VARTYPE_ID_DOUBLE: {
+          VarDouble* dd = (VarDouble*)(v.get());
+          VarDouble* _double = new VarDouble(dd->getName(), dd->getDouble(), dd->getMin(), dd->getMax());
+          return VarDoublePtr(_double);
+      }
+
+      case VARTYPE_ID_STRING: {
+          VarString* ss = (VarString*)(v.get());
+          VarString* _string = new VarString(ss->getName(), ss->getString());
+          return VarStringPtr(_string);
+      }
+
+      case VARTYPE_ID_LIST: {
+          VarList* ss = (VarList*)(v.get());
+          VarList* _list = new VarList(ss->getName());
+          for(int i=0; i<ss->getChildrenCount(); i++) {
+              _list->addChild(cloneVarType(ss->getChildren()[i]));
+          }
+          return VarListPtr(_list);
+      }
+
+      case VARTYPE_ID_SELECTION: {
+          VarSelection* ss = (VarSelection*)(v.get());
+          VarSelection* _selection = new VarSelection(ss->getName(), ss->getCount());
+          for(uint i=0; i<ss->getCount(); i++) {
+              // _selection->addItem(false, ss->getChildren());
+          }
+          return VarSelectionPtr(_selection);
+      }
+
+      case VARTYPE_ID_SHORT: {
+          VarShort* ss = (VarShort*)(v.get());
+          VarShort* _short = new VarShort(ss->getName(), ss->getShort(), ss->getMin(), ss->getMax());
+          return VarShortPtr(_short);
+      }
+
+      default:
+          return NULL;
+      }
+  }
+
+  void VarTypesFactory::copyVarType(VarPtr src, VarPtr dst)
+  {
+      assert(src->getType() == dst->getType());
+      switch (src->getType()) {
+      ////    VARTYPE_ID_UNDEFINED=0,
+      ////    VARTYPE_ID_BOOL,
+      ////    VARTYPE_ID_INT,
+      ////    VARTYPE_ID_DOUBLE,
+      ////    VARTYPE_ID_STRING,
+      ////    VARTYPE_ID_BLOB,
+      ////    VARTYPE_ID_EXTERNAL,
+      ////    VARTYPE_ID_VECTOR2D,
+      ////    VARTYPE_ID_VECTOR3D,
+      ////    VARTYPE_ID_TIMEVAR,
+      ////    VARTYPE_ID_TIMELINE,
+      ////    VARTYPE_ID_LIST,
+      ////    VARTYPE_ID_STRINGENUM,
+      ////    VARTYPE_ID_SELECTION,
+      ////    VARTYPE_ID_SHORT,
+      ////    VARTYPE_ID_TRIGGER,
+      ////    VARTYPE_ID_QWIDGET,
+      ////    VARTYPE_ID_COUNT,
+      ////    VARTYPE_ID_MIN_USERTYPE=128
+      case VARTYPE_ID_BOOL: {
+          VarBool* _src = (VarBool*)(src.get());
+          VarBool* _dst = (VarBool*)(dst.get());
+          _dst->setName(_src->getName());
+          _dst->setBool(_src->getBool());
+      }
+
+      case VARTYPE_ID_INT: {
+          VarInt* _src = (VarInt*)(src.get());
+          VarInt* _dst = (VarInt*)(dst.get());
+          _dst->setName(_src->getName());
+          _dst->setInt(_src->getInt());
+      }
+
+      case VARTYPE_ID_DOUBLE: {
+          VarDouble* _src = (VarDouble*)(src.get());
+          VarDouble* _dst = (VarDouble*)(dst.get());
+          _dst->setName(_src->getName());
+          _dst->setDouble(_src->getDouble());
+      }
+
+      case VARTYPE_ID_STRING: {
+          VarString* _src = (VarString*)(src.get());
+          VarString* _dst = (VarString*)(dst.get());
+          _dst->setName(_src->getName());
+          _dst->setString(_src->getString());
+      }
+
+      case VARTYPE_ID_LIST: {
+          VarList* _src = (VarList*)(src.get());
+          VarList* _dst = (VarList*)(dst.get());
+          _dst->setName(_src->getName());
+
+          for(int i=0; i<_src->getChildrenCount(); i++) {
+              copyVarType(_src->getChildren()[i], _dst->getChildren()[i]);
+          }
+      }
+
+      case VARTYPE_ID_SELECTION: {
+
+      }
+
+      case VARTYPE_ID_SHORT: {
+          VarShort* _src = (VarShort*)(src.get());
+          VarShort* _dst = (VarShort*)(dst.get());
+          _dst->setName(_src->getName());
+          _dst->setShort(_src->getShort());
+      }
+
+      default:
+          return ;
+      }
+
   }
 };
