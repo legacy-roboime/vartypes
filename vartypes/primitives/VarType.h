@@ -165,6 +165,8 @@ namespace VarTypes {
     #endif
     VarTypeFlag _flags;
     string _name;
+
+  public:
     static string fixString(const char * cst);
     static string intToString(int val);
     static string doubleToString(double val);

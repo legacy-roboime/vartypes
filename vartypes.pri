@@ -2,6 +2,8 @@ QT += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 DEFINES += VDATA_NO_THREAD_SAFETY
+DEFINES += VARTYPES
+DEFINES += XML_PARSER
 
 INCLUDEPATH += $$PWD/vartypes
 INCLUDEPATH += $$PWD/vartypes/gui
