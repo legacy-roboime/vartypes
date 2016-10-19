@@ -19,7 +19,7 @@
 */
 #include "VarTreeView.h"
 namespace VarTypes {
-  VarTreeView::VarTreeView(VarTreeModel * tmodel) {
+  VarTreeView::VarTreeView(QWidget *parent, VarTreeModel * tmodel) :QWidget(parent){
     model=tmodel;
     tw=new QTreeView();
     delegate = new VarItemDelegate();
