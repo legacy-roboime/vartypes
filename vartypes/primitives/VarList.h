@@ -54,8 +54,6 @@ namespace VarTypes {
     virtual ~VarList() {
       list.clear();
     };
-  
-
     
     /// this will always return the empty string ""
     virtual string getString() const { return ""; }

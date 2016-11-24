@@ -23,6 +23,7 @@
   #include "VarInt.h"
   #include "VarBool.h"
   #include "VarDouble.h"
+  #include "VarShort.h"
 
   #include "VarBlob.h"
   #include "VarList.h"
@@ -54,6 +55,8 @@ namespace VarTypes {
     VarVal    * newVarVal(VarTypeId t);
     VarTypeId   stringToType(const string & s);
     string      typeToString(VarTypeId t);
+    VarPtr      cloneVarType(VarPtr v);
+    void        copyVarType(VarPtr src, VarPtr dst);
   
   };
 };

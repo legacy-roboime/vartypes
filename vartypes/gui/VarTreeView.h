@@ -57,7 +57,7 @@ namespace VarTypes {
     void checkDataChanged ( const QModelIndex & topLeft, const QModelIndex & bottomRight );
   public:
     void setModel(VarTreeModel * tmodel);
-    VarTreeView(VarTreeModel * tmodel=0);
+    VarTreeView(QWidget *parent = 0, VarTreeModel * tmodel=0);
     virtual ~VarTreeView();
     void fitColumns(); //fit columns to data
     void expandAndFocus(VarPtr search); //will focus on and expand an item, if it exists

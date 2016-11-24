@@ -19,16 +19,17 @@
 */
 #include "VarTreeView.h"
 namespace VarTypes {
-  VarTreeView::VarTreeView(VarTreeModel * tmodel) {
+  VarTreeView::VarTreeView(QWidget *parent, VarTreeModel * tmodel) :QWidget(parent){
     model=tmodel;
     tw=new QTreeView();
     delegate = new VarItemDelegate();
     tw->setItemDelegate(delegate);
     tw->setAlternatingRowColors(true);
     tw->setUniformRowHeights ( false );
-    tw->setAnimated(false);
+    tw->setAnimated(true);
     tw->setWordWrap(true);
     tw->setEditTriggers(tw->editTriggers() | QAbstractItemView::CurrentChanged);
+    tw->setIndentation(10);
     if (tmodel!=0) setModel(tmodel);
     search_edit = new QLineEdit(this);
     l = new QVBoxLayout();

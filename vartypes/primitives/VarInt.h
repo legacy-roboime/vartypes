@@ -154,12 +154,14 @@ namespace VarTypes {
       if (hasMin()) {
         us.updateAttribute(intToString(getMin()).c_str(),"minval","minval");
       } else {
-        us.updateAttribute("","minval","minval");
+        /// dont write anything: Javad
+        //us.updateAttribute("","minval","minval");
       }
       if (hasMax()) {
         us.updateAttribute(intToString(getMax()).c_str(),"maxval","maxval");
       } else {
-        us.updateAttribute("","maxval","maxval");
+        /// dont write anything: Javad
+        //us.updateAttribute("","maxval","maxval");
       }
     }
   

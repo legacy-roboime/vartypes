@@ -41,6 +41,11 @@ MainWindow::MainWindow()
   VarTriggerPtr v_trigger1(new VarTrigger("trigger","click me"));
   v_list1->addChild(v_trigger1); //add it to the tree
 
+  //create a slider bar
+  VarShortPtr v_short1(new VarShort("short integer", 1, 0, 100));
+  v_short1->addFlags(VARTYPE_FLAG_PERSISTENT);
+  v_list1->addChild(v_short1);
+
   //create a variable of type double:
   VarDoublePtr v_double1(new VarDouble("my double"));
   v_list1->addChild(v_double1); //add it to the tree
@@ -70,6 +75,8 @@ MainWindow::MainWindow()
 
   v_list3->addChild(VarIntPtr(new VarInt("an integer")));
   v_list3->addChild(VarBoolPtr(new VarBool("a boolean")));
+
+
 
   VarStringEnumPtr v_string_enum(new VarStringEnum("food-selector", "French Fries"));
   v_string_enum->addFlags(VARTYPE_FLAG_PERSISTENT);
